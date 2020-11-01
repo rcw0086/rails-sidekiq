@@ -18,12 +18,12 @@ class EndangeredController < ApplicationController
   def upload
     csv_file = File.join Rails.root, 'db', 'sharks.csv'
     AddEndangeredWorker.perform_async(csv_file)
-    redirect_to endangered_data_path, n otice: 'Endangered sharks have been uploaded!'
+    redirect_to endangered_data_path, notice: 'Endangered sharks have been uploaded!'
   end
 
   # POST /endangered/destroy
   def destroy
-    RemoveEndangeredWorker.performa_async
+    RemoveEndangeredWorker.perform_async
     redirect_to root_path
   end
 
